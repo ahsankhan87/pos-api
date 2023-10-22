@@ -28,4 +28,4 @@ process.on('SIGINT', () => {
     });
 });
 
-module.exports = connection;
+export default connection;

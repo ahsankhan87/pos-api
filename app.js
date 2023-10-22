@@ -41,9 +41,15 @@ app.use(
 /* Routes */
 app.use('/products', productRoutes)
 
+// // For testing purposes 
+// app.get("/", (req, res) => { 
+//     res.send("<h2>It's Working!</h2>"); 
+// }); 
+
 /* Server setup */
 if (process.env.NODE_ENV !== 'test') {
-    app.listen(port, () => console.log(`⚡️[server]: Server is running at https://localhost:${port}`))
+    app.listen(port, () => console.log(`⚡️[server]: Server is running at http://localhost:${port}`))
+    
 }
 
 export default app

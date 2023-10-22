@@ -1,41 +1,41 @@
-//import db from '../../db/db.js'
-const db = require('../../db/db');
+import db from '../../db/db.js'
+// const db = require('../../db/db');
 
 class productModel {
   listItems(callback) {
-    db.query('SELECT * FROM pos_products', (err, result) => {
+    db.query('SELECT * FROM pos_items', (err, result) => {
       if (err) throw err;
       callback(result);
     });
   }
 
   getItem(productId, callback) {
-    db.query('SELECT * FROM pos_products WHERE id = ?', [productId], (err, result) => {
+    db.query('SELECT * FROM pos_items WHERE item_id = ?', [productId], (err, result) => {
       if (err) throw err;
       callback(result[0]);
     });
   }
 
   addItem(product, callback) {
-    db.query('INSERT INTO pos_products SET ?', product, (err, result) => {
+    db.query('INSERT INTO pos_items SET ?', product, (err, result) => {
       if (err) throw err;
       callback(result.insertId);
     });
   }
 
   editItem(productId, product, callback) {
-    db.query('UPDATE pos_products SET ? WHERE id = ?', [product, productId], (err, result) => {
+    db.query('UPDATE pos_items SET ? WHERE item_id = ?', [product, productId], (err, result) => {
       if (err) throw err;
       callback(result.affectedRows);
     });
   }
 
   deleteItem(productId, callback) {
-    db.query('DELETE FROM pos_products WHERE id = ?', [productId], (err, result) => {
+    db.query('DELETE FROM pos_items WHERE item_id = ?', [productId], (err, result) => {
       if (err) throw err;
       callback(result.affectedRows);
     });
   }
 }
 
-module.exports = new productModel();
+export default new productModel();
